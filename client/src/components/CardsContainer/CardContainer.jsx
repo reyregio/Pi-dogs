@@ -1,25 +1,22 @@
+import React from "react";
 import Card from "../Card/Card";
 import style from "./CardContainer.module.css";
-import { useSelector } from "react-redux";
 
-const CardContainer = () => {
-    const dogs=useSelector(state=>state.dogs)
-
+const CardContainer = ({ dogs }) => {
     return (
         <div className={style.container}>
-        {dogs.map((dog) => {
-            return (
-                <Card
-                id={dog.id}
-                name={dog.name}
-                weight={dog.weight}
-                height={dog.height}
-                life_span={dog.life_span}
-                temperament={dog.temperament}
-                image={dog.image}
-                />
-                );
-            })}
+        {dogs.map((dog) => (
+            <Card
+            key={dog.id}
+            id={dog.id}
+            name={dog.name}
+            weight={dog.weight}
+            height={dog.height}
+            life_span={dog.life_span}
+            temperament={dog.temperament}
+            image={dog.image}
+            />
+            ))}
             </div>
             );
         };

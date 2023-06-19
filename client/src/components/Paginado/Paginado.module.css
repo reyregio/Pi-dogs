@@ -1,0 +1,28 @@
+/* Paginado.module.css */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.listas {
+    margin: 0 5px;
+}
+
+.listas a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #f7f8ef; /* Color de las letras */
+    background-color: #6f9261; /* Fondo de los botones */
+    border: 2px solid #2c3131; /* Bordes */
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.listas a:hover {
+    background-color: #2c3131; /* Cambio de color de fondo al pasar el cursor */
+    color: #f7f8ef; /* Cambio de color de letras al pasar el cursor */
+}
