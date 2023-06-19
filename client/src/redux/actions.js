@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_DOGS = "GET_DOGS";
 export const GET_ALL_TEMPERAMENT="GET_ALL_TEMPERAMENT";
 export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT";
+export const FILTER_CREATED="FILTER_CREATED"
 
 
 export const getDogs = () => {
@@ -25,4 +26,12 @@ export const filterTemperament = (temperament) => {
         type: FILTER_TEMPERAMENT,
         payload: temperament
     }
+}
+export function filterCreated(payload){
+    
+    return{
+        type:'FILTER_CREATED',
+        payload
+    }
+    
 }

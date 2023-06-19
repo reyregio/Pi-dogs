@@ -1,3 +1,24 @@
 .pagination{
     min-width: 100%;
 }
+.select {
+    width: 200px;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color:#ebe7d6 ;
+    box-shadow:  #2c3131;
+    color: #2c3131;
+    margin: 3px;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+
+
+.select:hover {
+    color:  #e69a6e;
+}
