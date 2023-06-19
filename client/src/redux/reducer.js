@@ -3,6 +3,7 @@ import {
     GET_ALL_TEMPERAMENT,
     FILTER_TEMPERAMENT,
     FILTER_CREATED,
+    ORDER_BY_NAME
 } from "./actions";
 
 const initialState = {
@@ -49,6 +50,31 @@ const rootReducer = (state = initialState, action) => {
         return {
             ...state,
             dogsFilter: pj,
+        };
+        case ORDER_BY_NAME:
+        let sortedName =
+        action.payload === 'asc'
+        ? state.dogs.sort(function(a, b) {
+            if (a.name > b.name) {
+                return 1;
+            }
+            if (b.name > a.name) {
+                return -1;
+            }
+            return 0;
+        })
+        : state.dogs.sort(function(a, b) {
+            if (a.name > b.name) {
+                return -1;
+            }
+            if (b.name > a.name) {
+                return 1;
+            }
+            return 0;
+        });
+        return {
+            ...state,
+            dogs: sortedName
         };
         
         default:

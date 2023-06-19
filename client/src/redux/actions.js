@@ -3,7 +3,7 @@ export const GET_DOGS = "GET_DOGS";
 export const GET_ALL_TEMPERAMENT="GET_ALL_TEMPERAMENT";
 export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT";
 export const FILTER_CREATED="FILTER_CREATED"
-
+export const ORDER_BY_NAME="ORDER_BY_NAME"
 
 export const getDogs = () => {
     return async function (dispatch) {
@@ -34,4 +34,10 @@ export function filterCreated(payload){
         payload
     }
     
+}
+export const orderByname = (payload) => {
+    return {
+        type:ORDER_BY_NAME,
+        payload: payload
+    }
 }

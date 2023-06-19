@@ -6,7 +6,8 @@ import {
     getDogs,
     getAllTemperament,
     filterTemperament,
-    filterCreated
+    filterCreated,
+    orderByname
 } from "../../redux/actions.js";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
@@ -50,8 +51,6 @@ const Home = () => {
         setCurrentPage(1);
     }
     
-    
-    
     const [filterBreed, setFilterBreed] = useState("");
     const handleFilterCreatedDB = (e) => {
         e.preventDefault();
@@ -59,6 +58,16 @@ const Home = () => {
         setFilterBreed(e.target.value);
         setCurrentPage(1);
     };
+    
+    const [order,SetOrder]=useState('');
+    
+    const handleOrder=(e)=>{
+        e.preventDefault();
+        dispatch(orderByname(e.target.value))
+        setCurrentPage(1);
+        SetOrder(`Ordenado ${e.target.value}`)
+    }
+    
     return (
         <>
         <h1>Este es el Home</h1>
@@ -68,7 +77,8 @@ const Home = () => {
         <button onClick={(e) => handleClick(e)}>refreshhh</button>
         <h1>Breeds Home</h1>
         <div>
-        <select className={style.select}>
+        <select className={style.select}
+        onChange={(e)=>handleOrder(e)}>
         <option value="asc">Ascendente</option>
         <option value="desc">Descendente</option>
         </select>
