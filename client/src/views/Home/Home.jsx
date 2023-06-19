@@ -4,12 +4,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getDogs } from "../../redux/actions";
 import { Link } from "react-router-dom";
-import {filterByTemperament} from "../../redux/actions"
 const Home = () => {
     const dispatch = useDispatch();
     
-  //  const allDogs = useSelector((state) => state.dogs);
-  //  const temperamentos = useSelector((state) => state.temperaments);
+
     useEffect(() => {
         console.log("ejecutando");
         dispatch(getDogs());
@@ -19,14 +17,12 @@ const Home = () => {
         e.preventDefault();
         dispatch(getDogs());
     }
-    function handleFilterByTemperament(e) {
-        dispatch(filterByTemperament(e.target.value));
-    }
+    
     
     return (
         <>
         <h1>Este es el Home</h1>
-        <Link to="/Form">
+        <Link to="/create">
         <button>Crear una raza</button>
         </Link>
         <button onClick={e=>{handleClick(e)}}>refreshhh</button>
@@ -36,9 +32,7 @@ const Home = () => {
         <option value="asc">Ascendente</option>
         <option value="desc">Descendente</option>
         </select>
-        <select
-        onChange={(e) => handleFilterByTemperament(e)}
-        >
+        <select>
         <option>Temperamentos</option>
         {/* {temperamentos.map((el) => {
             return <option>{el.name}</option>;
