@@ -1,6 +1,17 @@
-.card{
-    border: 1px solid black;
-    width:fit-content;
-    height: fit-content;
-    border-radius:10 px ;
+.card {
+    border: 5px solid #709261;
+    width: 350px;
+    height: 650px;
+    border-radius: 8px;
+    background-color: rgba(235, 231, 214, 0.9);
+    color: #2c3131;
+    text-align: center;
+}
+
+.card img {
+    max-width:  300px;
+    max-height:250px;
+    object-fit: contain;
+    border-radius: 10px;
+    border:6px solid #80A66F ;
 }
