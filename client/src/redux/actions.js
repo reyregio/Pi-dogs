@@ -4,7 +4,7 @@ export const GET_ALL_TEMPERAMENT="GET_ALL_TEMPERAMENT";
 export const FILTER_TEMPERAMENT="FILTER_TEMPERAMENT";
 export const FILTER_CREATED="FILTER_CREATED"
 export const ORDER_BY_NAME="ORDER_BY_NAME"
-
+export const GET_NAME="GET_NAME"
 export const getDogs = () => {
     return async function (dispatch) {
         const apiata = await axios.get("http://localhost:3001/dogs");
@@ -41,3 +41,15 @@ export const orderByname = (payload) => {
         payload: payload
     }
 }
+
+export const getDogsByName = (name) => {
+    return async function (dispatch) {
+        try{
+            const backDogs = await axios.get("http://localhost:3001/dogs?name="+name);
+            return dispatch({ type: GET_NAME, payload:  backDogs.data  });
+            
+        }catch (error){
+            console.log(error);
+        }
+    };
+};

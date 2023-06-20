@@ -3,7 +3,8 @@ import {
     GET_ALL_TEMPERAMENT,
     FILTER_TEMPERAMENT,
     FILTER_CREATED,
-    ORDER_BY_NAME
+    ORDER_BY_NAME,
+    GET_NAME
 } from "./actions";
 
 const initialState = {
@@ -76,6 +77,10 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             dogs: sortedName
         };
+        case GET_NAME:
+            return{
+                ...state,
+            dogs:action.payload            }
         
         default:
         return { ...state };

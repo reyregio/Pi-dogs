@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CardContainer from "../../components/CardsContainer/CardContainer";
 import Paginado from "../../components/Paginado/Paginado";
+import SearchBar  from "../../components/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
     getDogs,
@@ -39,11 +40,6 @@ const Home = () => {
         dispatch(getDogs());
     }, [dispatch]);
     
-    const handleClick = (e) => {
-        e.preventDefault();
-        dispatch(getDogs());
-        setCurrentPage(1);
-    };
     
     function handleFilterByTemperament(e) {
         e.preventDefault(e);
@@ -74,8 +70,9 @@ const Home = () => {
         <Link to="/create">
         <button>Crear una raza</button>
         </Link>
-        <button onClick={(e) => handleClick(e)}>refreshhh</button>
+
         <h1>Breeds Home</h1>
+        <SearchBar/>
         <div>
         <select className={style.select}
         onChange={(e)=>handleOrder(e)}>
@@ -110,6 +107,7 @@ const Home = () => {
                 allDogs={dogsFilter.length}
                 pagination={pagination} // Cambio en el nombre de la prop
                 />
+                
                 <div className={style.pagination}>
                 <CardContainer dogs={currentDogs} />
                 </div>
