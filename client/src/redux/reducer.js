@@ -4,7 +4,7 @@ import {
     FILTER_TEMPERAMENT,
     FILTER_CREATED,
     ORDER_BY_NAME,
-    GET_NAME
+    GET_NAME,
 } from "./actions";
 
 const initialState = {
@@ -54,8 +54,8 @@ const rootReducer = (state = initialState, action) => {
         };
         case ORDER_BY_NAME:
         let sortedName =
-        action.payload === 'asc'
-        ? state.dogs.sort(function(a, b) {
+        action.payload === "asc"
+        ? state.dogs.sort(function (a, b) {
             if (a.name > b.name) {
                 return 1;
             }
@@ -64,7 +64,7 @@ const rootReducer = (state = initialState, action) => {
             }
             return 0;
         })
-        : state.dogs.sort(function(a, b) {
+        : state.dogs.sort(function (a, b) {
             if (a.name > b.name) {
                 return -1;
             }
@@ -75,13 +75,17 @@ const rootReducer = (state = initialState, action) => {
         });
         return {
             ...state,
-            dogs: sortedName
+            dogs: sortedName,
         };
         case GET_NAME:
-            return{
-                ...state,
-            dogs:action.payload            }
-        
+        return {
+            ...state,
+            dogs: action.payload,
+        };
+        case "POST_DOGS":
+        return{
+            ...state,
+        }
         default:
         return { ...state };
     }
