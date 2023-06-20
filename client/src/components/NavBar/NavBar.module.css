@@ -1,5 +1,25 @@
-.mainContainer{
+.mainContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     border-radius: 3px;
+    background-color:#ebe7d6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    margin-right: 80%;
+    margin-left: px;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.mainContainer a {
+    
+    transition: color 0.3s ease;
+}
+
+.mainContainer a:hover {
+    color: #80A66F; /* Cambia el color de texto al pasar el cursor sobre los enlaces */
+}
+.linkStyle{
+    color: #000000;
+    text-decoration: none;
 }
