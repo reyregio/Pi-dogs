@@ -5,6 +5,8 @@ import {
     FILTER_CREATED,
     ORDER_BY_NAME,
     GET_NAME,
+    POST_DOGS,
+    ERROR
 } from "./actions";
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
     temperaments: [],
     dogsFilter: [],
     allDogs: [],
+    error:false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -82,10 +85,19 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             dogs: action.payload,
         };
-        case "POST_DOGS":
-        return{
+        case POST_DOGS:
+        return {
             ...state,
-        }
+            dogs: [...state.dogs, action.payload], // Agregar el perro creado al estado actual
+            allDogs: [...state.allDogs, action.payload], // Agregar el perro creado al estado actual
+        };
+        case ERROR:
+        return {
+            ...state,
+            
+            error: !state.error,
+        };
+        
         default:
         return { ...state };
     }
