@@ -6,7 +6,8 @@ import {
     ORDER_BY_NAME,
     GET_NAME,
     POST_DOGS,
-    ERROR
+    ERROR,
+    GET_DOG_ID
 } from "./actions";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
     dogsFilter: [],
     allDogs: [],
     error:false,
+    detail:[]
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -97,6 +99,11 @@ const rootReducer = (state = initialState, action) => {
             
             error: !state.error,
         };
+        case GET_DOG_ID:
+            return{
+                ...state,
+                detail:action.payload,
+            }
         
         default:
         return { ...state };

@@ -7,6 +7,8 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const GET_NAME = "GET_NAME";
 export const ERROR = "ERROR";
 export const POST_DOGS = "POST_DOGS";
+export const GET_DOG_ID="GET_DOG_ID";
+
 export const getDogs = () => {
     return async function (dispatch) {
         const apiata = await axios.get("http://localhost:3001/dogs");
@@ -72,3 +74,18 @@ export const getDogsByName = (name) => {
         };
     };
     
+    
+    export function getDogId (id){
+        return async function(dispatch){
+            try {
+                const dogId=await axios.get(`http://localhost:3001/dogs/`+id);
+                return dispatch({
+                    type:"GET_DOG_ID",
+                    payload:dogId.data
+
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }

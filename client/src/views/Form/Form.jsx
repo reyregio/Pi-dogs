@@ -18,8 +18,8 @@ const Form = () => {
         heightMax: "",
         weightMin: "",
         weightMax: "",
-        lifeSpanMax: "",
-        lifeSpanMin: "",
+        life_spanMax: "",
+        life_spanMin: "",
         temperament: [],
         image: ""
     });
@@ -30,8 +30,8 @@ const Form = () => {
         heightMax: "",
         weightMin: "",
         weightMax: "",
-        lifeSpanMax: "",
-        lifeSpanMin: "",
+        life_spanMax: "",
+        life_spanMin: "",
         temperament: [],
         image: ""
     });
@@ -50,8 +50,8 @@ const Form = () => {
         heightMax: "",
         weightMin: "",
         weightMax: "",
-        lifeSpanMax: "",
-        lifeSpanMin: "",
+        life_spanMax: "",
+        life_spanMin: "",
         temperament: [],
         image: ""
     });
@@ -111,12 +111,12 @@ const Form = () => {
                 errors.weightMax = "Peso máximo invalido";
             }
             
-            if (!/^\d+$/.test(form.lifeSpanMin)) {
-                errors.lifeSpanMin = "Años de vida minimos invalidos";
+            if (!/^\d+$/.test(form.life_spanMin)) {
+                errors.life_spanMin = "Años de vida minimos invalidos";
             }
             
-            if (!/^\d+$/.test(form.lifeSpanMax)) {
-                errors.lifeSpanMax = "Años de vida maximos invalidos";
+            if (!/^\d+$/.test(form.life_spanMax)) {
+                errors.life_spanMax = "Años de vida maximos invalidos";
             }
             
             setErrors(errors);
@@ -204,26 +204,26 @@ const Form = () => {
             {errors.weightMax && <span className={style.error}>{errors.weightMax}</span>}
             </div>
             <div>
-            <label htmlFor="lifeSpanMin">Años de vida mínimos:</label>
+            <label htmlFor="life_spanMin">Años de vida mínimos:</label>
             <input
             className={style.input}
             type="text"
-            value={form.lifeSpanMin}
+            value={form.life_spanMin}
             onChange={handleChange}
-            name="lifeSpanMin"
+            name="life_spanMin"
             />
-            {errors.lifeSpanMin && <span className={style.error}>{errors.lifeSpanMin}</span>}
+            {errors.life_spanMin && <span className={style.error}>{errors.life_spanMin}</span>}
             </div>
             <div>
-            <label htmlFor="lifeSpanMax">Años máximos de vida:</label>
+            <label htmlFor="life_spanMax">Años máximos de vida:</label>
             <input
             className={style.input}
             type="text"
-            value={form.lifeSpanMax}
+            value={form.life_spanMax}
             onChange={handleChange}
-            name="lifeSpanMax"
+            name="life_spanMax"
             />
-            {errors.lifeSpanMax && <span className={style.error}>{errors.lifeSpanMax}</span>}
+            {errors.life_spanMax && <span className={style.error}>{errors.life_spanMax}</span>}
             </div>
             <div> <label>Temperamentos: </label>
             <select className={style.input} onChange={handleSelect}>
