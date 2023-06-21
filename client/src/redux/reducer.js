@@ -7,7 +7,8 @@ import {
     GET_NAME,
     POST_DOGS,
     ERROR,
-    GET_DOG_ID
+    GET_DOG_ID,
+    ORDER_BY_WEIGHT
 } from "./actions";
 
 const initialState = {
@@ -105,6 +106,25 @@ const rootReducer = (state = initialState, action) => {
             detail: action.payload,
         };
         
+        case ORDER_BY_WEIGHT:
+            if(action.payload === "min"){
+                pj = state.dogsFilter.sort((a, b) => {
+                    if(a.weightMin < b.weightMin) return -1; // si el peso de a es menor que el de b, a va antes que b
+                    if(a.weightMin > b.weightMin) return 1; // si el peso de a es mayor que el de b, a va despues que b
+                    return 0;
+                })
+            } else {
+                pj = state.dogsFilter.sort((a, b) => {
+                    if(a.weightMin > b.weightMin) return -1; // si el peso de a es mayor que el de b, a va antes que b
+                    if(a.weightMin < b.weightMin) return 1; // si el peso de a es menor que el de b, a va despues que b
+                    return 0;
+                })
+            }
+
+            return{
+                ...state,
+                dogsFilter: pj
+            }
         default:
         return { ...state };
     }

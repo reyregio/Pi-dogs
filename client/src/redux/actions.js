@@ -8,6 +8,7 @@ export const GET_NAME = "GET_NAME";
 export const ERROR = "ERROR";
 export const POST_DOGS = "POST_DOGS";
 export const GET_DOG_ID="GET_DOG_ID";
+export const ORDER_BY_WEIGHT="ORDER_BY_WEIGHT"
 
 export const getDogs = () => {
     return async function (dispatch) {
@@ -90,4 +91,9 @@ export const getDogsByName = (name) => {
             }
         };
     }
-    
+    export function orderByWeight(payload){
+        return {
+            type: ORDER_BY_WEIGHT,
+            payload
+        }
+    }

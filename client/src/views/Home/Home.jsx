@@ -9,7 +9,9 @@ import {
     getAllTemperament,
     filterTemperament,
     filterCreated,
-    orderByname
+    orderByname,
+    orderByWeight,
+    
 } from "../../redux/actions.js";
 import { Link } from "react-router-dom";
 import style from "./Home.module.css";
@@ -30,7 +32,6 @@ const Home = () => {
     const dogsPerPage = 8;
     const indexOfLastDog = currentPage * dogsPerPage;
     const indexOfFirstDog = indexOfLastDog - dogsPerPage;
-    const allDogs = useSelector((state) => state.dogs);
     const currentDogs = dogsFilter.slice(indexOfFirstDog, indexOfLastDog);
     
     const pagination = (pageNumber) => {
@@ -63,6 +64,13 @@ const Home = () => {
         dispatch(orderByname(e.target.value))
         setCurrentPage(1);
         SetOrder(`Ordenado ${e.target.value}`)
+        
+    }
+    function handleSortWeight(e) {
+        e.preventDefault();
+        dispatch(orderByWeight(e.target.value));
+        setCurrentPage(1);
+        SetOrder(e.target.value);
     }
     
     return (
@@ -71,7 +79,7 @@ const Home = () => {
         <Link to="/create">
         <button>Crear una raza</button>
         </Link>
-
+        
         <h1>Breeds Home</h1>
         
         <div>
@@ -101,6 +109,13 @@ const Home = () => {
                 <option value="all">Todos</option>
                 <option value="created">Creados</option>
                 <option value="api">Existentes</option>
+                </select>
+                <select defaultValue="WEIGHT" className={style.select} onChange={(e) => handleSortWeight(e)}>
+                <option value="WEIGHT" disabled selected>
+                Order by weight
+                </option>
+                <option value="min">Weight Min</option>
+                <option value="max">Weight Max</option>
                 </select>
                 </div>
                 <Paginado
