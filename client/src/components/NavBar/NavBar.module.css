@@ -1,14 +1,11 @@
 .mainContainer {
-    display: flex;
-    justify-content: flex-start;
-    border-radius: 3px;
-    background-color:#ebe7d6;
+    background-color: #ebe7d6;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    max-width: 90%;
-    margin-right: 80%;
-    margin-left: px;
-    padding: 1rem;
-    flex-direction: column;
+    height: 25px;
+    FONT-WEIGHT: 100;
+    padding: 10px;
+    width: 100%;
+    border-radius: 2px;
 }
 
 .mainContainer a {

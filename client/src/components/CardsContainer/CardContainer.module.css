@@ -1,8 +1,8 @@
 .container{
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    border-radius: 15px;
-    flex-wrap: wrap;
-    gap:1em ;
+    width: 100%;
+    margin: 0 ;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    background-color:#6f9261e1 ;
 }

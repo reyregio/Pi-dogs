@@ -100,10 +100,10 @@ const rootReducer = (state = initialState, action) => {
             error: !state.error,
         };
         case GET_DOG_ID:
-            return{
-                ...state,
-                detail:action.payload,
-            }
+        return {
+            ...state,
+            detail: action.payload,
+        };
         
         default:
         return { ...state };

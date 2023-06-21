@@ -75,17 +75,19 @@ export const getDogsByName = (name) => {
     };
     
     
-    export function getDogId (id){
-        return async function(dispatch){
+    export function getDogId(id) {
+        return async function (dispatch) {
             try {
-                const dogId=await axios.get(`http://localhost:3001/dogs/`+id);
+                const dogId = await axios.get(`http://localhost:3001/dogs/${encodeURIComponent(id)}`);
                 return dispatch({
-                    type:"GET_DOG_ID",
-                    payload:dogId.data
-
-                })
+                    type: "GET_DOG_ID",
+                    payload: dogId.data,
+                });
             } catch (error) {
-                console.log(error)
+                return dispatch({
+                    type: ERROR,
+                });
             }
-        }
+        };
     }
+    

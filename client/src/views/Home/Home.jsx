@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CardContainer from "../../components/CardsContainer/CardContainer";
 import Paginado from "../../components/Paginado/Paginado";
-import SearchBar  from "../../components/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
+import SearchBar  from "../../components/SearchBar/SearchBar";
+
 import {
     getDogs,
     getAllTemperament,
@@ -65,14 +66,14 @@ const Home = () => {
     }
     
     return (
-        <>
+        <><SearchBar/>
         <h1>Este es el Home</h1>
         <Link to="/create">
         <button>Crear una raza</button>
         </Link>
 
         <h1>Breeds Home</h1>
-        <SearchBar/>
+        
         <div>
         <select className={style.select}
         onChange={(e)=>handleOrder(e)}>
