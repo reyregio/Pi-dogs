@@ -38,10 +38,13 @@ const Form = () => {
     
     const handleChange = (e) => {
         const { name, value } = e.target;
+
         setForm((prevState) => ({
             ...prevState,
+            
             [name]: value
         }));
+        validate(form)
     };
     
     const [input, setInput] = useState({
