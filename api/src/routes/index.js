@@ -14,7 +14,7 @@ const getInfoApi = async () => {
     const dogUrl = await axios.get(API);
     const apiInfo = await dogUrl.data.map((el) => {
         return {
-            id:el.id,
+            id: el.id,
             name: el.name,
             image: el.image.url,
             weight: el.weight.metric, // Acceder a la unidad métrica del peso
@@ -75,7 +75,7 @@ router.get("/temperaments", async (req, res) => {
     .split(",") // las separo por comas
     .map((t) => t.trim()) // las quito los espacios
     .filter((t) => t.length > 1); // las quito las palabras que tienen una longitud de 1
-    const filtro = tempDB.filter((t) => t); // por cada temperamento lo guardo separado
+    const filtro = tempDB.filter((t) => t.length > 1); // filtrar los temperamentos con longitud mayor a 1
     let tempFilt = [...new Set(filtro)]; // hago un nuevo array con los temperamentos que tenia guardados y los nuevos, si se repiten se quitan
     
     tempFilt.forEach((t) => {
@@ -93,7 +93,7 @@ router.get("/temperaments", async (req, res) => {
 // POST | /dogsconst { Dog, Temperament } = require('../database/models');
 
 router.post("/dogs", async (req, res) => {
-    const {
+    let {
         name,
         heightMin,
         heightMax,
@@ -107,41 +107,54 @@ router.post("/dogs", async (req, res) => {
     
     if (!image) {
         try {
-            image = await (
-                await axios.get("https://dog.ceo/api/breeds/image/random")
-                ).data.message;
-            } catch (error) {
-                console.log(error);
-            }
+            image = (await axios.get("https://dog.ceo/api/breeds/image/random")).data.message;
+        } catch (error) {
+            console.log(error);
         }
-        
-        if (
-            name &&
-            heightMin &&
-            heightMax &&
-            weightMin &&
-            weightMax &&
-            temperament &&
-            image
-            ) {
-                try {
-                    const createDog = await Dog.create({
-                        name: name,
-                        heightMin: heightMin,
-                        heightMax: heightMax,
-                        weightMin: weightMin,
-                        weightMax: weightMax,
-                        life_spanMax: life_spanMax,
-                        life_spanMin: life_spanMin,
-                        image: image || "https://dog.ceo/api/breeds/image/random",
-                        createdInBd: true,
-                    });
+    }
+    
+    if (
+        name &&
+        heightMin &&
+        heightMax &&
+        weightMin &&
+        weightMax &&
+        temperament &&
+        image
+        ) {
+            try {
+                const createDog = await Dog.create({
+                    name: name,
+                    heightMin: heightMin,
+                    heightMax: heightMax,
+                    weightMin: weightMin,
+                    weightMax: weightMax,
+                    life_spanMax: life_spanMax,
+                    life_spanMin: life_spanMin,
+                    image: image || "https://dog.ceo/api/breeds/image/random",
+                    createdInBd: true,
+                });
+                
+                const existingTemperaments = await Temperament.findAll({
+                    where: { name: temperament },
+                });
+                
+                // Split del string de temperamentos por comas y eliminación de espacios en blanco
+                const newTemperaments = temperament.map((temp) => temp.trim());
+                
+                const createdTemperaments = await Promise.all(
+                    newTemperaments.map(async (temp) => {
+                        const [temperamentInstance, created] = await Temperament.findOrCreate({
+                            where: { name: temp },
+                            defaults: { name: temp },
+                        });
+                        return temperamentInstance;
+                    })
+                    );
                     
-                    const temperaments = await Temperament.findAll({
-                        where: { name: temperament },
-                    });
-                    
-                    createDog.setTemperaments(temperaments);
+                    const dogTemperaments = await createDog.getTemperaments();
+                    const allTemperaments = [...dogTemperaments, ...createdTemperaments];
+                    await createDog.setTemperaments(allTemperaments);
                     
                     res.status(200).send(createDog);
                 } catch (error) {
@@ -153,6 +166,7 @@ router.post("/dogs", async (req, res) => {
             }
         });
         
+        
         // /dogs/:idRaza
         
         router.get("/dogs/:idRaza", async (req, res) => {
@@ -161,8 +175,10 @@ router.post("/dogs", async (req, res) => {
             const DogsTotal = await getAllBreeds();
             
             if (idRaza) {
-                const dogID = await DogsTotal.filter(el => el.id.toString() === idRaza);
-                dogID.length ? res.status(200).json(dogID) : res.status(404).send('No se encontró esa raza');
+                const dogID = await DogsTotal.filter((el) => el.id.toString() === idRaza);
+                dogID.length
+                ? res.status(200).json(dogID)
+                : res.status(404).send("No se encontró esa raza");
             }
         });
         

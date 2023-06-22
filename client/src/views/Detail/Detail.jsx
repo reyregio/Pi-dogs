@@ -23,7 +23,6 @@ export default function Detail() {
     image,
     temperaments;
     
-    // Verificar si los datos están disponibles y ajustarlos según el formato
     if (detail) {
         if (detail.name) {
             name = detail.name;

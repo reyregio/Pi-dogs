@@ -13,7 +13,6 @@ import {
     orderByWeight,
 
 } from "../../redux/actions.js";
-import { Link } from "react-router-dom";
 import style from "./Home.module.css";
 
 const Home = () => {
