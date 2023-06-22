@@ -6,8 +6,8 @@
     padding: 20px;
     border-radius: 15px;
     width: 40%;
-    height: 620px;
-    margin-top: -7%;
+    height: 100%s;
+    margin-top: 2%;
     margin-left: 30%;
 
 }
@@ -15,9 +15,10 @@
 
 h2 {
     font-family: "Roboto", sans-serif;
-    font-weight: 600;
+    font-weight: 100;
     color: #2c3131;
-    margin:5px;
+    margin-bottom: 10%;
+text-align:left ;
 }
 
 .label {
