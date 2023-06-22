@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogId } from "../../redux/actions";
 import { useParams, Link } from "react-router-dom";
+import S from "./Detail.module.css";
 
 export default function Detail() {
     const dispatch = useDispatch();
@@ -12,7 +13,15 @@ export default function Detail() {
         dispatch(getDogId(id));
     }, [dispatch, id]);
     
-    let name, weightMin, weightMax, heightMin, heightMax, life_spanMax, life_spanMin, image, temperaments;
+    let name,
+    weightMin,
+    weightMax,
+    heightMin,
+    heightMax,
+    life_spanMax,
+    life_spanMin,
+    image,
+    temperaments;
     
     // Verificar si los datos están disponibles y ajustarlos según el formato
     if (detail) {
@@ -52,25 +61,27 @@ export default function Detail() {
     }
     
     return (
-        <>
-        <div>
+        <div className={S.container}>
+        <div className={S.header}>
         <h1>Mi raza es {name || "N/A"}</h1>
-        <img src={image} alt="" />
-        <h4>
-        Altura: {heightMin && heightMax ? `${heightMin} - ${heightMax}` : "N/A"}
-        </h4>
-        <h4>
-        Peso: {weightMin && weightMax ? `${weightMin} - ${weightMax}` : "N/A"}
-        </h4>
-        <h3>Temperamentos: {temperaments || "N/A"}</h3>
-        <p>
-        Años de vida: {life_spanMin && life_spanMax ? `${life_spanMin} - ${life_spanMax}` : "N/A"}
-        </p>
         </div>
+        <div className={S.content}>
+        <div className={S.imageContainer}>
+        <img src={image} alt="" className={S.img} />
+        </div>
+        <div className={S.data}>
+        <h4>Altura: {heightMin && heightMax ? `${heightMin} - ${heightMax}` : "N/A"}</h4>
+        <h4>Peso: {weightMin && weightMax ? `${weightMin} - ${weightMax}` : "N/A"}</h4>
+        <h3>Temperamentos: {temperaments || "N/A"}</h3>
+        <p>Años de vida: {life_spanMin && life_spanMax ? `${life_spanMin} - ${life_spanMax}` : "N/A"}</p>
+        </div>
+        </div>
+        <div className={S.footer}>
         <Link to="/home">
-        <button>Volver</button>
+        <button className={S.button}>Volver</button>
         </Link>
-        </>
+        </div>
+        </div>
         );
     }
     
